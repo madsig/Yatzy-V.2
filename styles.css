@@ -1,0 +1,140 @@
+table, tr, td, th {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    min-width: 80px;
+    height: 20px;
+}
+
+.centered {
+    text-align: center;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.yatzyContainer {
+    display: grid;
+    grid-template-columns: 200px 200px 400px;
+    /* grid-template-rows: 10px auto 10px; */
+    grid-template-areas: 'yatzyBlock diceblocks debug';
+    height: 450px;
+    width: 100%;
+    gap: 10px;
+}
+
+.yatzyBlock {
+    grid-area: yatzyBlock;
+    /* background-color: rgb(230, 230, 230); */
+    display: flex;
+    justify-content: center;
+}
+
+.diceblocks {
+    grid-area: diceblocks;
+    /* background-color: rgb(211, 211, 211); */
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center; */
+    display: grid;
+    grid-template-rows: 195px 195px;
+    grid-template-columns: none;
+    grid-template-areas: 
+        'die'
+        'button';
+    gap: 10px;
+}
+
+.diceblocks .dieArea {
+    grid-area: die;
+    /* justify-self: center;
+    align-self: self-end;
+    display: flex; */
+    font-size: xxx-large;
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: auto 50px;
+    grid-template-areas: 
+        'heldDice'
+        'dice';
+    justify-items: center;
+    align-items: end;
+    gap: 3px;
+}
+
+.heldDiceContainer {
+    display: flex;
+    grid-area: heldDice;
+}
+
+.diceContainer {
+    display: flex;
+    grid-area: dice;
+}
+
+.diceblocks .buttonArea {
+    grid-area: button;
+    display: flex;
+    justify-content: center;
+}
+
+.dice {
+    color: rgb(87, 87, 87);
+}
+
+.heldDice {
+    color: rgb(161, 0, 0);
+}
+
+.dice:hover,
+.heldDice:hover {
+    color: red;
+    transform: translateY(-5px);
+}
+
+
+.diceButton {
+    height: 60px;
+    width: 100px;
+    background-color: white;
+    font-size: larger;
+    border-radius: 5px;
+    border: solid grey 1px;
+    cursor: pointer;
+    box-shadow: 1px 1px black;
+}
+
+.diceButton:hover{
+    background-color: rgb(211, 211, 211);
+}
+
+.diceButton:disabled {
+    height: 60px;
+    width: 100px;
+    background-color: white;
+    font-size: larger;
+    border-radius: 5px;
+    border: solid grey 1px;
+    cursor: default;
+    box-shadow: 1px 1px black;
+}
+
+.debug {
+    grid-area: debug;
+    display: flex;
+    justify-content: center;
+    /* align-content: center;
+    background-color: rgb(218, 218, 218); */
+}
+
+.debugWindow {
+    background-color: lightgray;
+    margin: 20px;
+    height: 410px;
+    width: 300px;
+    border: solid black 1px;
+    overflow: auto;
+}
