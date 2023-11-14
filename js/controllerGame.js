@@ -113,8 +113,22 @@ function getScore(place) {
     return "wrong parameter"
 }
 
-function setScore(place) {
-    type = "ones, twos, threes, fours, fives, sixes".includes(place) ? 'numbers' : 'specials';
-    model.game.runtime.players[model.game.runtime.currentPlayer].setScore(type, place, getScore(place))
+function setScore(place, player) {
+    if (model.game.runtime.currentPlayer !== player) return
+    if (model.game.runtime.rollCount === 0) return
+    if ("sum, numSum, bonus".includes(place)) return;
+    let type = "ones, twos, threes, fours, fives, sixes".includes(place) ? 'numbers' : 'specials';
+    model.game.runtime.players[model.game.runtime.currentPlayer].setScore(type, place, getScore(place));
+    nextTrun();
     updateViewGame();
+}
+
+function nextTrun() {
+    let runtime = model.game.runtime;
+    runtime.rollCount = 0;
+    runtime.dice = [];
+    runtime.heldDice = [];
+    runtime.buttonEnabled = true;
+    runtime.currentPlayer = (runtime.currentPlayer + 1) % runtime.players.length;
+    debugLog("--new turn--")
 }

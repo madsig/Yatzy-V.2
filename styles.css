@@ -1,7 +1,7 @@
 table, tr, td, th {
     border: 1px solid gray;
     border-collapse: collapse;
-    min-width: 80px;
+    width: 160px;
     height: 20px;
 }
 
@@ -17,7 +17,7 @@ table, tr, td, th {
 
 .yatzyContainer {
     display: grid;
-    grid-template-columns: 200px 200px 400px;
+    grid-template-columns: minmax(200px, auto) 200px 400px;
     /* grid-template-rows: 10px auto 10px; */
     grid-template-areas: 'yatzyBlock diceblocks debug';
     height: 450px;
@@ -28,8 +28,8 @@ table, tr, td, th {
 .yatzyBlock {
     grid-area: yatzyBlock;
     /* background-color: rgb(230, 230, 230); */
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
 }
 
 .diceblocks {

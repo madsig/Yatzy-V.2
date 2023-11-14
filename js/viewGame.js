@@ -28,8 +28,9 @@ function getTableHtml() {
 function getTableCollums(index) {
     let collumsHtml = "";
     for (let j=0; j<model.game.runtime.players.length; j++) {
+        let onclick = index === 0 ? '' : `onclick="setScore('${model.game.rowIds[index]}', ${j})"`;
         collumsHtml += /*HTML*/`
-         <${rowType} class="centered">${getCollumContent(index, j)}</${rowType}>
+         <${rowType} ${onclick} class="centered">${getCollumContent(index, j)}</${rowType}>
          `
     }
     return collumsHtml;
@@ -38,14 +39,18 @@ function getTableCollums(index) {
 function getCollumContent(index, id) {
     const players = model.game.runtime.players;
     const rowId = model.game.rowIds;
-    if (index === 0) return players[id].name;
-    if (index > 0 && index < 7) return players[id].score.numbers[rowId[index-1]];
-    if (index === 7) return players[id].score.numSum;
-    if (index === 8) return players[id].score.bonus;
-    if (index > 8 && index < 18) return players[id].score.specials[rowId[index-3]];
-    if (index === 18) return players[id].score.totSum;
+    const numScore = players[id].score.numbers[rowId[index]];
+    const spcScore = players[id].score.specials[rowId[index]]
+    let content = "Error";
+    if (index === 0) content = players[id].name;
+    if (index > 0 && index < 7) content = numScore === 0 ? '——' : numScore;
+    if (index === 7) content = players[id].score.numSum;
+    if (index === 8) content = players[id].score.bonus;
+    if (index > 8 && index < 18) content = spcScore === 0 ? '——' : spcScore;
+    if (index === 18) content = players[id].score.totSum;
 
-    return "|Error|"
+    content = content === null ? '' : content;
+    return content;
 }
 
 

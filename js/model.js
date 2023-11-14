@@ -53,9 +53,10 @@ model = {
             "Liten straight", "Stor straight", "Hus", "Sjanse", "Yatzy", "Sum",
         ],
         rowIds: [
-            "ones", "twos", "threes", "fours", "fives", "sixes",
+            "name", "ones", "twos", "threes", "fours", "fives", "sixes",
+            "numSum", "bonus",
             "onePair", "twoPairs", "threeAlike", "fourAlike",
-            "smallStraight", "bigStraight", "house", "chance", "yatzy",
+            "smallStraight", "bigStraight", "house", "chance", "yatzy", "sum",
         ]
     },
 };
@@ -65,26 +66,26 @@ class Player {
         this.name = name;
         this.score = {
             numbers: {
-                ones: 0,
-                twos: 0,
-                threes: 0,
-                fours: 0,
-                fives: 0,
-                sixes: 0,
+                ones: null,
+                twos: null,
+                threes: null,
+                fours: null,
+                fives: null,
+                sixes: null,
             },
             numSum: 0,
-            bonus: 0,
+            bonus: null,
 
             specials: {
-                onePair: 0,
-                twoPairs: 0,
-                threeAlike: 0,
-                fourAlike: 0,
-                smallStraight: 0,
-                bigStraight: 0,
-                house: 0,
-                chance: 0,
-                yatzy: 0,
+                onePair: null,
+                twoPairs: null,
+                threeAlike: null,
+                fourAlike: null,
+                smallStraight: null,
+                bigStraight: null,
+                house: null,
+                chance: null,
+                yatzy: null,
             },
 
             totSum: 0,
@@ -95,16 +96,6 @@ class Player {
         return this.score;
     }
     setScore(type, name, value) {
-        //check if type is correct
-        //if (type !== "numbers" && type !== "specials") return "wrong type";
-
-        //check if name is correct
-        // let nameCorrect = false;
-        // for (let value in this.score.numbers) {
-        //     if (value === name) nameCorrect = true;
-        // }
-        // if (!nameCorrect) return "wrong name";
-
         this.score[type][name] = value;
         this.updateSums();
     }
